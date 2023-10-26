@@ -1,0 +1,92 @@
+body {
+    height: 100vh !important;
+    background-color: #f2f2f2;
+}
+
+.login-box {
+    margin: 10px;
+    padding: 20px;
+    width: 380px;
+    max-width: 100%;
+    height: 460px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.email,
+.password {
+    width: 100%;
+    padding: 8px 5px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #c0c0c0 !important;
+}
+
+hr {
+    width: 100%;
+    margin: 0 5px;
+}
+
+.email::placeholder,
+.password::placeholder {
+    font-size: 15px;
+    color: #c0c0c0;
+
+}
+
+.email:focus,
+.password:focus {
+    transition: all ease 0.2s;
+    outline: none;
+    border-bottom: 2px solid #1294c4 !important;
+}
+
+.submitbtn {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 8px;
+    margin: 8px 0;
+    font-size: 17px;
+    background: #16BFFD;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #CB3066, #16BFFD);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #CB3066, #16BFFD);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.submitbtn:hover {
+    background: linear-gradient(to right, #b82c5d, #0e7397);
+}
+.submitbtn:active {
+    transform: translateY(2px) ;
+}
+.google-btn {
+    width: 100%;
+    padding: 8px 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    font-weight: 600;
+}
+.google-btn:hover {
+    background-color: #cccccc;
+}
+
+.google-btn > img {
+    padding-right: 5px;
+}
