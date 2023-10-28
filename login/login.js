@@ -21,29 +21,38 @@ const provider = new GoogleAuthProvider();
 
 
 function login() {
-    const password = document.getElementById("exampleInputPassword")
     const email = document.getElementById("exampleInputEmail")
+    const password = document.getElementById("exampleInputPassword")
 
-    signInWithEmailAndPassword(auth, email.value, password.value)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            console.log(user)
-            Swal.fire({
-                icon: 'success',
-                title: 'Congrats',
-                text: 'Login Successfull !',
-            })
-            email.value = ""
-            password.value = ""
+    if (!(password.value && email.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Please enter input fields',
+            confirmButtonColor: '#df2525',
         })
-        .catch((error) => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: error.message,
+    } else {
+        signInWithEmailAndPassword(auth, email.value, password.value)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                console.log(user)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats',
+                    text: 'Login Successfull !',
+                }).then(() => { location.replace("../dashboard/dashboard.html") })
+                email.value = ""
+                password.value = ""
             })
-        });
+            .catch((error) => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.message,
+                })
+            });
+    }
 }
 
 
@@ -60,7 +69,7 @@ function signInWithGoogle() {
                 icon: 'success',
                 title: 'Congrats',
                 text: 'Login Successfull !',
-            })
+            }).then(() => { location.replace("../dashboard/dashboard.html") })
             // IdP data available using getAdditionalUserInfo(result)
             // ...
         }).catch((error) => {

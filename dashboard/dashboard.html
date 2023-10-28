@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News API</title>
+    <link rel="stylesheet" href="./dashboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <nav class="navbar bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white fs-3 fw-semibold">
+                <img src="https://png.pngtree.com/png-clipart/20190705/original/pngtree-vector-newspaper-icon-png-image_4187168.jpg" style="mix-blend-mode: multiply;" width="56px" alt="newslogo">My NEWS WEB</a>
+            <form class="d-flex" onsubmit="return false" role="search">
+                <input class="form-control me-2" type="search" id="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success" onclick="searchQuery()" id="searchBtn">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div id="wrapper" class="mx-3">
+        <hr>
+        <h2 class="my-3 ms-4">Technology News :</h2>
+        <hr>
+        <div class="d-flex justify-content-around flex-wrap" id="tech"></div>
+        <hr>
+        <h2 class="my-3 ms-4">Business News :</h2>
+        <hr>
+        <div class="d-flex justify-content-around flex-wrap" id="business"></div>
+        <hr>
+        <h2 class="my-3 ms-4">Science News :</h2>
+        <hr>
+        <div class="d-flex justify-content-around flex-wrap" id="science"></div>
+
+    </div>
+
+    <footer class="bg-primary text-light text-center py-3">
+            <p class="my-2">&#169; Copyright @ 2023. All right reserved</p>
+            <p class="my-2">Designed & Developed by <a class="text-primary-emphasis" href="https://abdulrafay-1.netlify.app">Abdul Rafay</a></p>
+    </footer>
+ 
+
+    <script src="./dasboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

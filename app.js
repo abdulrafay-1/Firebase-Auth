@@ -26,55 +26,38 @@ function signup() {
     const password = document.getElementById("exampleInputPassword1")
     const email = document.getElementById("exampleInputEmail1")
 
-    createUserWithEmailAndPassword(auth, email.value, password.value)
-        .then((userCredential) => {
-            // Signed up 
-            const user = userCredential.user;
-            console.log(user)
-
-            Swal.fire({
-                icon: 'success',
-                title: 'Congrats',
-                text: 'Signup Successfull !',
-            })
-            email.value = ""
-            password.value = ""
+    if (!(password.value && email.value)) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Please enter input fields',
+            confirmButtonColor: '#df2525',
         })
-        .catch((error) => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: error.message,
+    } else {
+        createUserWithEmailAndPassword(auth, email.value, password.value)
+            .then((userCredential) => {
+                // Signed up 
+                const user = userCredential.user;
+                console.log(user)
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Congrats',
+                    text: 'Signup Successfull !',
+                }).then(() => { location.replace("./dashboard/dashboard.html") })
+                email.value = ""
+                password.value = ""
             })
-        });
+            .catch((error) => {
+                console.log(error)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: error.message,
+                })
+            });
+    }
 }
-
-function login() {
-    const password = document.getElementById("exampleInputPassword")
-    const email = document.getElementById("exampleInputEmail")
-
-    signInWithEmailAndPassword(auth, email.value, password.value)
-        .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            console.log(user)
-            Swal.fire({
-                icon: 'success',
-                title: 'Congrats',
-                text: 'Login Successfull !',
-            })
-            email.value = ""
-            password.value = ""
-        })
-        .catch((error) => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: error.message,
-            })
-        });
-}
-
 
 function signInWithGoogle() {
     signInWithPopup(auth, provider)
@@ -89,9 +72,9 @@ function signInWithGoogle() {
                 icon: 'success',
                 title: 'Congrats',
                 text: 'Login Successfull !',
-            })
+            }).then(() => { location.replace("./dashboard/dashboard.html") })
+
             // IdP data available using getAdditionalUserInfo(result)
-            // ...
         }).catch((error) => {
             // Handle Errors here.
             const errorCode = error.code;
@@ -100,7 +83,6 @@ function signInWithGoogle() {
             const email = error.customData.email;
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
-            // ...
             console.log(error)
             Swal.fire({
                 icon: 'error',
@@ -112,6 +94,5 @@ function signInWithGoogle() {
 const googleBtn = document.getElementById("signinwithgoogle")
 
 RegisterBtn.addEventListener("click", signup)
-// loginBtn.addEventListener("click", login)
 googleBtn.addEventListener("click", signInWithGoogle)
 
