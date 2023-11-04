@@ -2,54 +2,72 @@ var wrapper = document.getElementById("wrapper")
 var tech = document.getElementById("tech");
 var business = document.getElementById("business");
 var science = document.getElementById("science");
+var searchResult = document.getElementById('searchResult')
 
+var loader = document.querySelectorAll(".loader")
 function getData() {
-    fetch("https://newsapi.org/v2/everything?q=technology&sortBy=publishedAt&pageSize=8&apiKey=53a1762632c84bb888c07a3fb5b9aea6")
-        .then((response) => response.json())
+    fetch("https://api.worldnewsapi.com/search-news?text=technology&api-key=822c8a72f5054c88be1f9d87d7c196ea&language=en&number=8")
+        .then((response) => {
+            return response.json()
+        })
         .then(result => {
-            for (let i = 0; i < result.articles.length; i++) {
-                tech.innerHTML += `
-            <div class="card m-2" style="width: 18rem;">
-                <img src="${result.articles[i].urlToImage}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${result.articles[i].title}</h5>
-                    <a href="#" class="btn btn-primary">Read More</a>
+            loader[0].classList.add("d-none")
+            if (result.news) {
+                for (let i = 0; i < result.news.length; i++) {
+                    tech.innerHTML += `
+                <div class="card m-2" style="width: 18rem;">
+                    <img src="${result.news[i].image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${result.news[i].title}</h5>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
                 </div>
-            </div>
-        `
+            `
+                }
+            } else {
+                tech.innerHTML = "<p class='fs-5 fw-semibold py-4 my-auto text-dark-emphasis'>Unable to Fetch Data</p>"
             }
         })
         .catch(error => console.log(error))
 
-    fetch("https://newsapi.org/v2/everything?q=business&sortBy=publishedAt&pageSize=8&apiKey=53a1762632c84bb888c07a3fb5b9aea6")
+    fetch("https://api.worldnewsapi.com/search-news?text=bussiness&api-key=822c8a72f5054c88be1f9d87d7c196ea&language=en&number=8")
         .then((response) => response.json())
         .then(result => {
-            for (let i = 0; i < result.articles.length; i++) {
-                business.innerHTML += `
-            <div class="card m-2" style="width: 18rem;">
-                <img src="${result.articles[i].urlToImage}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${result.articles[i].title}</h5>
-                    <a href="#" class="btn btn-primary">Read More</a>
+            loader[1].classList.add("d-none")
+            if (result.news) {
+                for (let i = 0; i < result.news.length; i++) {
+                    business.innerHTML += `
+                <div class="card m-2" style="width: 18rem;">
+                    <img src="${result.news[i].image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${result.news[i].title}</h5>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
                 </div>
-            </div>
-        `
+            `
+                }
+            } else {
+                business.innerHTML = "<p class='fs-5 fw-semibold py-4 my-auto text-dark-emphasis'>Unable to Fetch Data</p>"
             }
         })
         .catch(error => console.log(error))
-    fetch("https://newsapi.org/v2/everything?q=science&sortBy=publishedAt&pageSize=8&apiKey=53a1762632c84bb888c07a3fb5b9aea6")
+    fetch("https://api.worldnewsapi.com/search-news?text=science&api-key=822c8a72f5054c88be1f9d87d7c196ea&language=en&number=8")
         .then((response) => response.json())
         .then(result => {
-            for (let i = 0; i < result.articles.length; i++) {
-                science.innerHTML += `
+            loader[2].classList.add("d-none")
+            if (result.news) {
+                for (let i = 0; i < result.news.length; i++) {
+                    science.innerHTML += `
             <div class="card m-2" style="width: 18rem;">
-                <img src="${result.articles[i].urlToImage}" class="card-img-top" alt="...">
+                <img src="${result.news[i].image}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">${result.articles[i].title}</h5>
+                    <h5 class="card-title">${result.news[i].title}</h5>
                     <a href="#" class="btn btn-primary">Read More</a>
                 </div>
             </div>
-        `
+        `}
+            } else {
+                science.innerHTML = "<p class='fs-5 fw-semibold py-4 my-auto text-dark-emphasis'>Unable to Fetch Data</p>"
             }
         })
         .catch(error => console.log(error))
@@ -64,21 +82,32 @@ getData()
 function searchQuery() {
     var searchInput = document.getElementById("search").value;
     wrapper.innerHTML = "";
-    fetch(`https://newsapi.org/v2/everything?q=${searchInput}&sortBy=publishedAt&apiKey=53a1762632c84bb888c07a3fb5b9aea6`)
+    loader[3].classList.remove("d-none")
+    fetch(`https://api.worldnewsapi.com/search-news?text=${searchInput}&api-key=822c8a72f5054c88be1f9d87d7c196ea&language=en&number=20`)
         .then((response) => response.json())
         .then(result => {
-            for (let i = 0; i < result.articles.length; i++) {
-                wrapper.innerHTML += `
-            <div class="card m-2" style="width: 18rem;">
-                <img src="${result.articles[i].urlToImage}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">${result.articles[i].title}</h5>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+            loader[3].classList.add("d-none")
+            if (result.news) {
+                for (let i = 0; i < result.news.length; i++) {
+                    searchResult.innerHTML += `
+                <div class="card m-2" style="width: 18rem;">
+                    <img src="${result.news[i].image}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${result.news[i].title}</h5>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
                 </div>
-            </div>
-        `
+            `
+                }
+            } else{
+                searchResult.innerHTML = "<p class='fs-5 fw-semibold py-4 my-auto text-dark-emphasis'>Unable to Fetch Data</p>"
             }
         })
         .catch(error => console.log(error))
 }
 
+var currDate = new Date();
+var footerCopy = document.getElementById("copyright")
+footerCopy.innerHTML = `
+© Copyright ${currDate.getFullYear()} 2023. All right reserved
+`

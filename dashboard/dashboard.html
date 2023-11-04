@@ -13,7 +13,7 @@
 
     <nav class="navbar bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand text-white fs-3 fw-semibold">
+            <a href="" class="navbar-brand text-white fs-3 fw-semibold">
                 <img src="https://png.pngtree.com/png-clipart/20190705/original/pngtree-vector-newspaper-icon-png-image_4187168.jpg" style="mix-blend-mode: multiply;" width="56px" alt="newslogo">My NEWS WEB</a>
             <form class="d-flex" onsubmit="return false" role="search">
                 <input class="form-control me-2" type="search" id="search" placeholder="Search" aria-label="Search">
@@ -25,22 +25,29 @@
     <div id="wrapper" class="mx-3">
         <hr>
         <h2 class="my-3 ms-4">Technology News :</h2>
+        
         <hr>
         <div class="d-flex justify-content-around flex-wrap" id="tech"></div>
+        <div class="loader"></div>
         <hr>
         <h2 class="my-3 ms-4">Business News :</h2>
         <hr>
         <div class="d-flex justify-content-around flex-wrap" id="business"></div>
+        <div class="loader"></div>
         <hr>
         <h2 class="my-3 ms-4">Science News :</h2>
         <hr>
+        <div class="loader"></div>
         <div class="d-flex justify-content-around flex-wrap" id="science"></div>
+    </div>
 
+    <div class="d-flex justify-content-around flex-wrap" id="searchResult">
+        <div class="loader d-none"></div>
     </div>
 
     <footer class="bg-primary text-light text-center py-3">
-            <p class="my-2">&#169; Copyright @ 2023. All right reserved</p>
-            <p class="my-2">Designed & Developed by <a class="text-primary-emphasis" href="https://abdulrafay-1.netlify.app">Abdul Rafay</a></p>
+            <p class="my-2" id="copyright">&#169; Copyright @ 2023. All right reserved</p>
+            <p class="my-2">Designed & Developed by <a class="text-dark" href="https://abdulrafay-1.netlify.app">Abdul Rafay</a></p>
     </footer>
  
 

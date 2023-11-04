@@ -1,7 +1,35 @@
-*{
-    box-sizing: border-box;
+.loader {
+    margin: 40px auto;
+    width: 45px;
+    z-index: 2;
+    aspect-ratio: 1;
+    --c: no-repeat linear-gradient(#0d6efd 0 0);
+    background:
+        var(--c) 0% 50%,
+        var(--c) 50% 50%,
+        var(--c) 100% 50%;
+    background-size: 20% 100%;
+    animation: loader 1s infinite linear;
 }
-html, body {
-    margin: 0;
-    padding: 0;
+
+@keyframes loader {
+    0% {
+        background-size: 20% 100%, 20% 100%, 20% 100%
+    }
+
+    33% {
+        background-size: 20% 10%, 20% 100%, 20% 100%
+    }
+
+    50% {
+        background-size: 20% 100%, 20% 10%, 20% 100%
+    }
+
+    66% {
+        background-size: 20% 100%, 20% 100%, 20% 10%
+    }
+
+    100% {
+        background-size: 20% 100%, 20% 100%, 20% 100%
+    }
 }
