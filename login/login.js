@@ -1,4 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+import { getFirestore, doc,getDoc,  setDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -17,6 +19,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
 
@@ -41,10 +44,16 @@ function login() {
                     icon: 'success',
                     title: 'Congrats',
                     text: 'Login Successfull !',
-                }).then(() => { location.replace("../dashboard/dashboard.html") })
+                }).then(() => {  })
+                
                 email.value = ""
                 password.value = ""
+                const docRef = doc(db, "users",`${user.uid}`);
+                return getDoc(docRef);
             })
+            .then((mes)=>{
+                console.log(mes)
+                location.replace("../dashboard/dashboard.html")})
             .catch((error) => {
                 Swal.fire({
                     icon: 'error',
