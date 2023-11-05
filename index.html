@@ -17,8 +17,18 @@
 
         <form onsubmit="return false">
             <div class="inputs">
+                <input type="text" id="username" placeholder="Username" class="email">
+            </div>
+            <div class="inputs">
                 <input type="email" id="exampleInputEmail1" placeholder="Email" class="email">
                 <input type="password" id="exampleInputPassword1" placeholder="Password" class="password">
+            </div>
+            <div class="inputs my-2">
+                <select class="form-select" id="gender">
+                    <option value="" selected>Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                  </select>
             </div>
             <label for="checkbox" class="mb-2"><input type="checkbox" id="checkbox" onclick="showPass()"> Show Password</label>
             <div class="d-flex justify-content-center">

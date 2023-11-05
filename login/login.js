@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
-import { getFirestore, doc,getDoc,  setDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 
@@ -44,16 +44,16 @@ function login() {
                     icon: 'success',
                     title: 'Congrats',
                     text: 'Login Successfull !',
-                }).then(() => {  })
-                
+                }).then(() => { location.href = "../dashboard/dashboard.html" })
+
                 email.value = ""
                 password.value = ""
-                const docRef = doc(db, "users",`${user.uid}`);
-                return getDoc(docRef);
+
+                const docRef = doc(db, "users", `${user.uid}`);
+                getDoc(docRef);
+
             })
-            .then((mes)=>{
-                console.log(mes)
-                location.replace("../dashboard/dashboard.html")})
+            .then(() => { })
             .catch((error) => {
                 Swal.fire({
                     icon: 'error',

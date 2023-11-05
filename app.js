@@ -30,7 +30,7 @@ function signup() {
     const username = document.getElementById("username").value
     const gender = document.getElementById("gender").value
 
-    if (!(password && email)) {
+    if (!(password && email && username && gender)) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -52,9 +52,14 @@ function signup() {
                     
                   })
                 
-            })
-            .then((message)=>{
-                console.log(message)
+            }).then(()=> {
+                username = ""
+                password = ""
+                email = ""
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Signup Successfull',
+                }).then(() => location.href = "./dashboard/dashboard.html")
             })
             .catch((error) => {
                 console.log(error)
