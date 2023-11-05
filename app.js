@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+import { getFirestore, doc,getDoc,  setDoc } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -18,15 +19,18 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
+const db = getFirestore(app);
 
 const RegisterBtn = document.getElementById("RegisterBtn")
 
 
 function signup() {
-    const password = document.getElementById("exampleInputPassword1")
-    const email = document.getElementById("exampleInputEmail1")
+    const password = document.getElementById("exampleInputPassword1").value
+    const email = document.getElementById("exampleInputEmail1").value
+    const username = document.getElementById("username").value
+    const gender = document.getElementById("gender").value
 
-    if (!(password.value && email.value)) {
+    if (!(password && email)) {
         Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -34,19 +38,23 @@ function signup() {
             confirmButtonColor: '#df2525',
         })
     } else {
-        createUserWithEmailAndPassword(auth, email.value, password.value)
+        createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed up 
                 const user = userCredential.user;
                 console.log(user)
 
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Congrats',
-                    text: 'Signup Successfull !',
-                }).then(() => { location.replace("./dashboard/dashboard.html") })
-                email.value = ""
-                password.value = ""
+                return setDoc(doc(db, "users", `${user.uid}`), {
+                    email: email,
+                    username: username,
+                    password: password,
+                    gender: gender,
+                    
+                  })
+                
+            })
+            .then((message)=>{
+                console.log(message)
             })
             .catch((error) => {
                 console.log(error)
