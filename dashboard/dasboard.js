@@ -19,7 +19,7 @@ function getData() {
                     <img src="${result.news[i].image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${result.news[i].title}</h5>
-                        <a href="#" class="btn btn-primary">Read More</a>
+                        <a target="_blank" href="${result.news[i].url.replaceAll("^\"|\"$", "")}" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
             `
@@ -41,7 +41,7 @@ function getData() {
                     <img src="${result.news[i].image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${result.news[i].title}</h5>
-                        <a href="#" class="btn btn-primary">Read More</a>
+                        <a target="_blank" href="${result.news[i].url.replaceAll("^\"|\"$", "")}" class="btn btn-primary" >Read More</a>
                     </div>
                 </div>
             `
@@ -62,7 +62,7 @@ function getData() {
                 <img src="${result.news[i].image}" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">${result.news[i].title}</h5>
-                    <a href="#" class="btn btn-primary">Read More</a>
+                    <a target="_blank" href="${result.news[i].url.replaceAll("^\"|\"$", "")}" class="btn btn-primary">Read More</a>
                 </div>
             </div>
         `}
@@ -82,6 +82,7 @@ getData()
 function searchQuery() {
     var searchInput = document.getElementById("search").value;
     wrapper.innerHTML = "";
+    searchResult.innerHTML = "";
     loader[3].classList.remove("d-none")
     fetch(`https://api.worldnewsapi.com/search-news?text=${searchInput}&api-key=822c8a72f5054c88be1f9d87d7c196ea&language=en&number=20`)
         .then((response) => response.json())
@@ -94,12 +95,14 @@ function searchQuery() {
                     <img src="${result.news[i].image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${result.news[i].title}</h5>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <a target="_blank" href="${result.news[i].url.replaceAll("^\"|\"$", "")}" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             `
+
+
                 }
-            } else{
+            } else {
                 searchResult.innerHTML = "<p class='fs-5 fw-semibold py-4 my-auto text-dark-emphasis'>Unable to Fetch Data</p>"
             }
         })
