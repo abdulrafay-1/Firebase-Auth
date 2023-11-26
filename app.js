@@ -53,9 +53,6 @@ function signup() {
                   })
                 
             }).then(()=> {
-                username = ""
-                password = ""
-                email = ""
                 Swal.fire({
                     icon: 'success',
                     title: 'Signup Successfull',
