@@ -95,7 +95,7 @@ function searchQuery() {
                     <img src="${result.news[i].image}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${result.news[i].title}</h5>
-                        <a target="_blank" href="${result.news[i].url.replaceAll("^\"|\"$", "")}" class="btn btn-primary">Go somewhere</a>
+                        <a target="_blank" href="${result.news[i].url.replaceAll("^\"|\"$", "")}" class="btn btn-primary">Read more</a>
                     </div>
                 </div>
             `
